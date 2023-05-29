@@ -19,8 +19,8 @@ export default {
 
 <template>
     <div class="input-group mb-3">
-        <input type="text" class="form-control" :placeholder="placeholder" v-model="movieDBstore.apiFilters.mediaTitle">
-        <button class="btn btn-danger" type="button" @click="movieDBstore.goToPage(1)">
+        <input type="text" class="form-control" :placeholder="placeholder" v-model="movieDBstore.inputTitle" @keyup.enter="movieDBstore.newSearch()">
+        <button class="btn btn-danger" type="button" @click="movieDBstore.newSearch()">
             <i class="fas fa-search"></i>
         </button>
     </div>

@@ -7,6 +7,7 @@ export const movieDBstore = reactive({
     loading: false,
     totalPages: undefined,
     mediaLoaded: [],
+    inputTitle: "",
     apiFilters: {
         mediaType: "movie",
         mediaTitle: "",
@@ -43,6 +44,12 @@ export const movieDBstore = reactive({
     },
     getStarsNumber(vote){
         return Math.round(vote / 2);
+    },
+    newSearch(){
+        this.apiFilters.page = 1;
+        this.apiFilters.mediaTitle = this.inputTitle;
+        this.totalPages = undefined;
+        this.searchMediaByTitle();
     },
     goToPage(nPage){
         this.apiFilters.page = nPage;
