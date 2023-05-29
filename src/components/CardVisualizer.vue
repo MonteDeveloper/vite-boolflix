@@ -1,6 +1,7 @@
 <script>
 import LangFlag from 'vue-lang-code-flags';
-import PageSwitcher from './PageSwitcher.vue'
+import PageSwitcher from './PageSwitcher.vue';
+import { movieDBstore } from '../data/movieDBstore.js';
 
 export default {
     name: "CardVisualizer",
@@ -10,6 +11,11 @@ export default {
     },
     props: {
         cards: Array
+    },
+    data() {
+        return {
+            movieDBstore
+        }
     },
     methods: {
         getImgPath(posterPath) {
@@ -27,7 +33,7 @@ export default {
 </script>
 
 <template>
-    <div class="text-center text-white">
+    <div v-if="!movieDBstore.loading" class="text-center text-white">
         <PageSwitcher />
         <div class="row row-cols-2 row-cols-md-4 row-cols-lg-5 justify-content-center g-3">
             <!-- CARDS -->
@@ -224,9 +230,26 @@ export default {
         </div>
         <PageSwitcher class="mt-3" />
     </div>
+
+    <div v-else class="text-white text-center">
+        <i class="fa-solid fa-circle-notch"></i>
+    </div>
 </template>
 
 <style lang="scss" scoped>
+.fa-circle-notch{
+    font-size: 1.5rem;
+    animation: spin .5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .my-card {
     img {
         object-fit: cover;
