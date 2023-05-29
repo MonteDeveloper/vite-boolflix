@@ -9,7 +9,7 @@ export const movieDBstore = reactive({
     mediaLoaded: [],
     inputTitle: "",
     apiFilters: {
-        mediaType: "movie",
+        mediaType: "multi",
         mediaTitle: "",
         language: "it-IT",
         page: 1,

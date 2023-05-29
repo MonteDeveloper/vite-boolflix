@@ -37,7 +37,7 @@ export default {
         <ul class="pagination justify-content-center">
             <li class="page-item" :class="{ disabled: movieDBstore.apiFilters.page == 1 }"
                 @click="movieDBstore.goToPage(movieDBstore.apiFilters.page - 1)">
-                <span class="page-link">Previous</span>
+                <span class="page-link"><i class="fa-solid fa-angles-left"></i></span>
             </li>
             <li @click="movieDBstore.goToPage(n)" v-for="n in displayedPages" class="page-item"
                 :class="{ active: n == movieDBstore.apiFilters.page }">
@@ -47,7 +47,7 @@ export default {
             </li>
             <li class="page-item" :class="{ disabled: movieDBstore.apiFilters.page == movieDBstore.totalPages }"
                 @click="movieDBstore.goToPage(movieDBstore.apiFilters.page + 1)">
-                <a class="page-link">Next</a>
+                <a class="page-link"><i class="fa-solid fa-angles-right"></i></a>
             </li>
         </ul>
         <p>
@@ -63,7 +63,14 @@ export default {
 }
 
 .page-link {
-    color: black !important;
+    color: white !important;
+    border: none;
+    background-color: #221f22;
+    transition: background .2s;
+
+    &:hover{
+        background-color: #131113;
+    }
 }
 
 .page-item {
@@ -79,5 +86,6 @@ export default {
         background-color: crimson;
         border: 1px solid crimson;
         color: white !important;
+        pointer-events: none;
     }
 }</style>

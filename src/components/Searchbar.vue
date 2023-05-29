@@ -18,7 +18,7 @@ export default {
 </script>
 
 <template>
-    <div class="input-group mb-3">
+    <div class="input-group">
         <input type="text" class="form-control" :placeholder="placeholder" v-model="movieDBstore.inputTitle" @keyup.enter="movieDBstore.newSearch()">
         <button class="btn btn-danger" type="button" @click="movieDBstore.newSearch()">
             <i class="fas fa-search"></i>
@@ -27,4 +27,10 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+input, input:focus{
+    background-color: #221f22;
+    border: none;
+    color: white;
+}
+
 </style>

@@ -1,13 +1,13 @@
 <script>
 import CardVisualizer from './components/CardVisualizer.vue'
-import Searchbar from './components/SearchBar.vue'
+import TheHeader from './components/TheHeader.vue'
 import { movieDBstore } from './data/movieDBstore.js'
 
 export default {
   name: "App",
   components: {
     CardVisualizer,
-    Searchbar
+    TheHeader
   },
   data() {
     return {
@@ -23,8 +23,8 @@ export default {
 </script>
 
 <template>
+  <TheHeader logoPath="./src/assets/logo.png" :navElements="['Tutti', 'Film', 'Serie TV']"/>
   <div class="container">
-    <Searchbar placeholder="Search by title" />
     <CardVisualizer :cards="movieDBstore.mediaLoaded"/>
   </div>
 </template>
