@@ -10,7 +10,7 @@ export const movieDBstore = reactive({
     apiFilters: {
         mediaType: "movie",
         mediaTitle: "",
-        language: "it_IT",
+        language: "it-IT",
         page: 1,
         adult: false
     },
@@ -21,10 +21,11 @@ export const movieDBstore = reactive({
         ?api_key=${this.API_KEY}
         &include_adult=${this.apiFilters.adult}
         &language=${this.apiFilters.language}
-        &query=${this.apiFilters.mediaTitle}
+        &query=${this.apiFilters.mediaTitle.trim().replace(" ", "%20")}
         &page=${this.apiFilters.page}`
         .replace(/\s+/g, ''); //rimuovo indentazione della stringa
 
+        console.log(COMPLETE_URL);
         this.loading = true;
 
         axios.get(COMPLETE_URL).then(r => {
@@ -32,11 +33,19 @@ export const movieDBstore = reactive({
             this.mediaLoaded = r.data.results;
             this.loading = false;
             console.log(this.mediaLoaded);
+            this.totalPages = r.data.total_pages;
         }).catch(error => {
             //In caso di problemi, mostro l'errore in console
             console.error("Qualcosa è andato storto", error);
             //Il caricamento è comunque finito anche in questo caso
             this.loading = false;
         });
+    },
+    getStarsNumber(vote){
+        return Math.round(vote / 2);
+    },
+    goToPage(nPage){
+        this.apiFilters.page = nPage;
+        this.searchMediaByTitle();
     }
 });
