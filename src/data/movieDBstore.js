@@ -22,7 +22,7 @@ export const movieDBstore = reactive({
         ?api_key=${this.API_KEY}
         &include_adult=${this.apiFilters.adult}
         &language=${this.apiFilters.language}
-        &query=${this.apiFilters.mediaTitle.trim().replace(" ", "%20")}
+        &query=${this.apiFilters.mediaTitle.trim().replace(/ /g, '%20')}
         &page=${this.apiFilters.page}`
         .replace(/\s+/g, ''); //rimuovo indentazione della stringa
 
